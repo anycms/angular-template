@@ -9,7 +9,8 @@
     "test": "ng test",
     "ng-s": "ng serve --hmr",
     "unocss": "unocss --watch",
-    "dev": "run-p ng-s unocss"
+    "dev": "run-p ng-s unocss",
+    "proxy-demo": "run-p unocss 'ng s -c proxy --proxy-config ./proxy/proxy-demo.json'"
   },
   "private": true,
   "dependencies": {

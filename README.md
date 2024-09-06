@@ -3,7 +3,7 @@
 
 - [ ] 约定项目目录结构
 - [x] UnoCSS 集成
-- [ ] Proxy-Config 约定
+- [x] Proxy-Config 约定
 
 
 ## 约定项目目录结构
@@ -84,4 +84,15 @@ pnpm i --save-dev npm-run-all
 
 
 ## Proxy-Config 约定
-- TODO
+> 某些时候，需要连接远程服务器进行开发调试，通常情况下，由于是跨域问题，需要使用 proxy 解决跨域问题。
+
+> angular 在开发模式下，使用 proxy 配置解决这个问题，具体文档：[Angular Proxy](https://angular.dev/tools/cli/serve#proxying-to-a-backend-server)
+### 配置约定
+- proxy.conf 文件根据不同的后端 `proxy-xx.conf` 存放在 /proxy 目录下
+- 增加 `environment.proxy.ts` 文件存放代理配置常量, 通常, 远程的环境配置和 `environment.ts` 相同, 按需增加
+- 在 `angular.json` 增加 `proxy` 的配置，因为开发模式大概率不会和 `production` 相同, 之后可以使用 `ng s -c proxy` 启动
+- 在 `package.json` 增加调用 `proxy` 的启动配置
+如：
+```json
+    "proxy-demo": "run-p unocss 'ng s -c proxy --proxy-config ./proxy/proxy-demo.json'"
+```
